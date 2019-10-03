@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import { Switch, Route } from "react-router";
-import Home from "./Screens/Home";
+import Home from "./screens/Home";
 
 const App: React.FC = (): ReactElement => {
   return (
