@@ -7,8 +7,10 @@
     "@types/node": "12.7.9",
     "@types/react": "16.9.4",
     "@types/react-dom": "16.9.1",
+    "@types/react-router-dom": "^5.1.0",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "typescript": "3.6.3"
   },
@@ -17,6 +19,22 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "lint-staged": "^9.2.0",
+    "prettier": "^1.18.2",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "tslint-react": "^4.0.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "prettier --write",
+      "tslint --fix",
+      "git add",
+      "npm run lint:commit"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
