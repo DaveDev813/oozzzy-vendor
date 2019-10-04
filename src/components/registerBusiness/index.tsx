@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 // import PaymentForm from "./PaymentForm";
 // import Review from "./Review";
 import Welcome from './Welcome';
+import Hours from './Hours';
 
 const useStyles = makeStyles((theme: Theme) => ({
   appBar: {
@@ -57,6 +58,8 @@ const getStepContent = (step: any): any => {
   switch (step) {
     case 0:
       return <Welcome />;
+    case 1:
+      return <Hours />;
   }
 };
 
