@@ -1,10 +1,9 @@
-import React, { ReactElement } from "react";
-import TestStepper from "../components/Stepper";
+import React, { ReactElement } from 'react';
+import TestStepper from '../components/registerBusiness';
 
 const Home: React.FC = (): ReactElement => {
   return (
     <div>
-      <h1>Home</h1>
       <TestStepper />
     </div>
   );
