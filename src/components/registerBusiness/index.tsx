@@ -14,6 +14,7 @@ import Typography from '@material-ui/core/Typography';
 // import Review from "./Review";
 import Welcome from './Welcome';
 import Hours from './Hours';
+import Staff from './Staff';
 
 const useStyles = makeStyles((theme: Theme) => ({
   appBar: {
@@ -60,6 +61,8 @@ const getStepContent = (step: any): any => {
       return <Welcome />;
     case 1:
       return <Hours />;
+    case 2:
+      return <Staff />;
   }
 };
 
@@ -81,7 +84,7 @@ const TestStepper: React.FC = (): ReactElement => {
       <main className={classes.layout}>
         <Paper className={classes.paper}>
           <Typography component="h1" variant="h4" align="center">
-            Welcome to Oozzzy
+            Welcome
           </Typography>
           <Stepper activeStep={activeStep} className={classes.stepper}>
             {steps.map((label: any) => (
