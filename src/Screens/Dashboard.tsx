@@ -17,6 +17,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 // import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from '../components/ListItems';
 import BookCalendar from '../components/BookCalendar';
+import { Modal } from '@material-ui/core';
+import TestStepper from '../components/registerBusiness';
 
 const drawerWidth = 240;
 
@@ -109,9 +111,25 @@ const Dashboard: React.FC = (): ReactElement => {
     setOpen(false);
   };
   // const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  const [openModal, setOpenModal] = React.useState(true);
 
+  // const handleOpen = (): void => {
+  //   setOpenModal(true);
+  // };
+
+  const handleClose = (): void => {
+    setOpenModal(false);
+  };
   return (
     <div className={classes.root}>
+      <Modal
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        open={openModal}
+        onClose={handleClose}
+      >
+        <TestStepper />
+      </Modal>
       <CssBaseline />
       <AppBar
         position="absolute"
