@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+// import CssBaseline from '@material-ui/core/CssBaseline';
 // import AppBar from '@material-ui/core/AppBar';
 // import Toolbar from '@material-ui/core/Toolbar';
 import Paper from '@material-ui/core/Paper';
@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   paper: {
+    maxWidth: '600px',
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(3),
     padding: theme.spacing(2),
@@ -82,54 +83,49 @@ const TestStepper: React.FC = (): ReactElement => {
   };
 
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <main className={classes.layout}>
-        <Paper className={classes.paper}>
-          <Typography component="h1" variant="h4" align="center">
-            Welcome
-          </Typography>
-          <Stepper activeStep={activeStep} className={classes.stepper}>
-            {steps.map((label: any) => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
+    <Paper className={classes.paper}>
+      <Typography component="h1" variant="h4" align="center">
+        Welcome
+      </Typography>
+      <Stepper activeStep={activeStep} className={classes.stepper}>
+        {steps.map((label: any) => (
+          <Step key={label}>
+            <StepLabel>{label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
+      <React.Fragment>
+        {activeStep === steps.length ? (
           <React.Fragment>
-            {activeStep === steps.length ? (
-              <React.Fragment>
-                <Typography variant="h5" gutterBottom={true}>
-                  Thank you
-                </Typography>
-                <Typography variant="subtitle1">
-                  Done business registration
-                </Typography>
-              </React.Fragment>
-            ) : (
-              <React.Fragment>
-                {getStepContent(activeStep)}
-                <div className={classes.buttons}>
-                  {activeStep !== 0 && (
-                    <Button onClick={handleBack} className={classes.button}>
-                      Back
-                    </Button>
-                  )}
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleNext}
-                    className={classes.button}
-                  >
-                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                  </Button>
-                </div>
-              </React.Fragment>
-            )}
+            <Typography variant="h5" gutterBottom={true}>
+              Thank you
+            </Typography>
+            <Typography variant="subtitle1">
+              Done business registration
+            </Typography>
           </React.Fragment>
-        </Paper>
-      </main>
-    </React.Fragment>
+        ) : (
+          <React.Fragment>
+            {getStepContent(activeStep)}
+            <div className={classes.buttons}>
+              {activeStep !== 0 && (
+                <Button onClick={handleBack} className={classes.button}>
+                  Back
+                </Button>
+              )}
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleNext}
+                className={classes.button}
+              >
+                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+              </Button>
+            </div>
+          </React.Fragment>
+        )}
+      </React.Fragment>
+    </Paper>
   );
 };
 
