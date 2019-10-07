@@ -11,11 +11,12 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 // import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 // import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from '../components/ListItems';
+import BookCalendar from '../components/BookCalendar';
 
 const drawerWidth = 240;
 
@@ -169,9 +170,10 @@ const Dashboard: React.FC = (): ReactElement => {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Grid container={true} spacing={3}>
-            {/** content */}
-          </Grid>
+          {/* <Grid container={true} spacing={3}> */}
+          {/** content */}
+          <BookCalendar />
+          {/* </Grid> */}
         </Container>
       </main>
     </div>
