@@ -15,6 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import Welcome from './Welcome';
 import Hours from './Hours';
 import Staff from './Staff';
+import Services from './Services';
 
 const useStyles = makeStyles((theme: Theme) => ({
   appBar: {
@@ -63,6 +64,8 @@ const getStepContent = (step: any): any => {
       return <Hours />;
     case 2:
       return <Staff />;
+    case 3:
+      return <Services />;
   }
 };
 
@@ -97,12 +100,10 @@ const TestStepper: React.FC = (): ReactElement => {
             {activeStep === steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom={true}>
-                  Thank you for your order.
+                  Thank you
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order
-                  confirmation, and will send you an update when your order has
-                  shipped.
+                  Done business registration
                 </Typography>
               </React.Fragment>
             ) : (
@@ -120,7 +121,7 @@ const TestStepper: React.FC = (): ReactElement => {
                     onClick={handleNext}
                     className={classes.button}
                   >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                   </Button>
                 </div>
               </React.Fragment>
