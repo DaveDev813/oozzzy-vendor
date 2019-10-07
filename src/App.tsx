@@ -7,8 +7,8 @@ const App: React.FC = (): ReactElement => {
   return (
     <React.Fragment>
       <Switch>
-        <Route exact={true} path="/" component={Home} />
-        <Route exact={true} path="/dashboard" component={Dashboard} />
+        <Route exact={true} path="/" component={Dashboard} />
+        <Route exact={true} path="/dashboard" component={Home} />
       </Switch>
     </React.Fragment>
   );
