@@ -6,6 +6,7 @@ import {
   Typography,
   Box,
   Button,
+  Switch,
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -34,6 +35,9 @@ const Hours: React.FC = (): ReactElement => {
           <Typography color="primary" style={{ fontWeight: 'bold' }}>
             Monday
           </Typography>
+        </Box>
+        <Box m={1}>
+          <Switch color="primary" />
         </Box>
         <Box m={1}>
           <Box display="flex" flexDirection="row" alignItems="center">
