@@ -1,6 +1,15 @@
 import React, { ReactElement } from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import { Typography, Box, Button, Switch } from '@material-ui/core';
+import {
+  Typography,
+  Box,
+  Button,
+  Switch,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+} from '@material-ui/core';
 import {
   KeyboardTimePicker,
   MuiPickersUtilsProvider,
@@ -28,78 +37,76 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const Hours: React.FC = (): ReactElement => {
   const classes = useStyles();
-  const [selectedDate, setSelectedDate] = React.useState<Date | null>();
+  const [selectedDate, setSelectedDate] = React.useState<Date | null>(null);
 
   const handleDateChange = (date: Date | null): void => {
     setSelectedDate(date);
   };
   return (
     <form className={classes.form} noValidate={true}>
-      {days.map(
-        (day: string, index: number): ReactElement => {
-          return (
-            <Box
-              key={index}
-              display="flex"
-              flexDirection="row"
-              alignItems="center"
-              justifyContent="space-between"
-              className={classes.row}
-            >
-              <Box m={1}>
-                <Typography color="primary" style={{ fontWeight: 'bold' }}>
-                  {day}
-                </Typography>
-              </Box>
-              <Box m={1} alignSelf="flex-end">
-                <Switch color="primary" />
-              </Box>
-              <Box m={1}>
-                <Box display="flex" flexDirection="row" alignItems="center">
-                  <Box m={1}>
-                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                      <KeyboardTimePicker
-                        className={classes.time}
-                        id="time-picker"
-                        value={selectedDate}
-                        onChange={handleDateChange}
-                        KeyboardButtonProps={{
-                          'aria-label': 'change time',
-                        }}
-                      />
-                    </MuiPickersUtilsProvider>
+      <Table>
+        <TableBody>
+          {days.map(
+            (day: string, index: number): ReactElement => (
+              <TableRow key={index}>
+                <TableCell component="th" scope="row">
+                  <Typography color="primary" style={{ fontWeight: 'bold' }}>
+                    {day}
+                  </Typography>
+                </TableCell>
+                <TableCell align="right">
+                  <Switch color="primary" />
+                </TableCell>
+                <TableCell align="right">
+                  <Box display="flex" flexDirection="row" alignItems="center">
+                    <Box m={1}>
+                      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <KeyboardTimePicker
+                          className={classes.time}
+                          id="time-picker"
+                          value={selectedDate}
+                          onChange={handleDateChange}
+                          KeyboardButtonProps={{
+                            'aria-label': 'change time',
+                          }}
+                        />
+                      </MuiPickersUtilsProvider>
+                    </Box>
+                    <Box m={1}>
+                      <Typography
+                        color="primary"
+                        style={{ fontWeight: 'bold' }}
+                      >
+                        to
+                      </Typography>
+                    </Box>
+                    <Box m={1}>
+                      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <KeyboardTimePicker
+                          className={classes.time}
+                          id="time-picker"
+                          value={selectedDate}
+                          onChange={handleDateChange}
+                          KeyboardButtonProps={{
+                            'aria-label': 'change time',
+                          }}
+                        />
+                      </MuiPickersUtilsProvider>
+                    </Box>
                   </Box>
-                  <Box m={1}>
-                    <Typography color="primary" style={{ fontWeight: 'bold' }}>
-                      to
-                    </Typography>
-                  </Box>
-                  <Box m={1}>
-                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                      <KeyboardTimePicker
-                        className={classes.time}
-                        id="time-picker"
-                        value={selectedDate}
-                        onChange={handleDateChange}
-                        KeyboardButtonProps={{
-                          'aria-label': 'change time',
-                        }}
-                      />
-                    </MuiPickersUtilsProvider>
-                  </Box>
-                </Box>
-              </Box>
-              <Box m={1}>
-                {index === 0 && (
-                  <Button color="primary" variant="contained">
-                    Apply to all
-                  </Button>
-                )}
-              </Box>
-            </Box>
-          );
-        }
-      )}
+                </TableCell>
+                <TableCell align="right">
+                  {index === 0 && (
+                    <Button color="primary" variant="contained">
+                      Apply to all
+                    </Button>
+                  )}
+                </TableCell>
+              </TableRow>
+            )
+          )}
+        </TableBody>
+      </Table>
     </form>
   );
 };
