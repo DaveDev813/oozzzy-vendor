@@ -1,13 +1,11 @@
 import React, { ReactElement } from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
+import { Typography, Box, Button, Switch } from '@material-ui/core';
 import {
-  FormControl,
-  Select,
-  Typography,
-  Box,
-  Button,
-  Switch,
-} from '@material-ui/core';
+  KeyboardTimePicker,
+  MuiPickersUtilsProvider,
+} from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 
 const useStyles = makeStyles((theme: Theme) => ({
   '@global': {
@@ -19,10 +17,23 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
+  row: {
+    borderBottom: '1px solid #e0e0e0',
+  },
+  time: {
+    maxWidth: '130px',
+  },
 }));
 
 const Hours: React.FC = (): ReactElement => {
   const classes = useStyles();
+  const [selectedDate, setSelectedDate] = React.useState<Date | null>(
+    new Date('2014-08-18T21:11:54')
+  );
+
+  const handleDateChange = (date: Date | null): void => {
+    setSelectedDate(date);
+  };
   return (
     <form className={classes.form} noValidate={true}>
       <Box
@@ -30,6 +41,7 @@ const Hours: React.FC = (): ReactElement => {
         flexDirection="row"
         alignItems="center"
         justifyContent="space-around"
+        className={classes.row}
       >
         <Box m={1}>
           <Typography color="primary" style={{ fontWeight: 'bold' }}>
@@ -42,18 +54,17 @@ const Hours: React.FC = (): ReactElement => {
         <Box m={1}>
           <Box display="flex" flexDirection="row" alignItems="center">
             <Box m={1}>
-              <FormControl variant="outlined">
-                <Select
-                  native={true}
-                  inputProps={{
-                    name: 'timeTo',
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <KeyboardTimePicker
+                  className={classes.time}
+                  id="time-picker"
+                  value={selectedDate}
+                  onChange={handleDateChange}
+                  KeyboardButtonProps={{
+                    'aria-label': 'change time',
                   }}
-                >
-                  <option value={10}>5:00 PM</option>
-                  <option value={20}>6:00 PM</option>
-                  <option value={30}>7:00 PM</option>
-                </Select>
-              </FormControl>
+                />
+              </MuiPickersUtilsProvider>
             </Box>
             <Box m={1}>
               <Typography color="primary" style={{ fontWeight: 'bold' }}>
@@ -61,18 +72,17 @@ const Hours: React.FC = (): ReactElement => {
               </Typography>
             </Box>
             <Box m={1}>
-              <FormControl variant="outlined">
-                <Select
-                  native={true}
-                  inputProps={{
-                    name: 'timeTo',
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <KeyboardTimePicker
+                  className={classes.time}
+                  id="time-picker"
+                  value={selectedDate}
+                  onChange={handleDateChange}
+                  KeyboardButtonProps={{
+                    'aria-label': 'change time',
                   }}
-                >
-                  <option value={10}>5:00 PM</option>
-                  <option value={20}>6:00 PM</option>
-                  <option value={30}>7:00 PM</option>
-                </Select>
-              </FormControl>
+                />
+              </MuiPickersUtilsProvider>
             </Box>
           </Box>
         </Box>
