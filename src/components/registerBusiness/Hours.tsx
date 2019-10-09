@@ -54,10 +54,10 @@ const Hours: React.FC = (): ReactElement => {
                     {day}
                   </Typography>
                 </TableCell>
-                <TableCell align="right">
+                <TableCell align="center">
                   <Switch color="primary" />
                 </TableCell>
-                <TableCell align="right">
+                <TableCell align="center">
                   <Box display="flex" flexDirection="row" alignItems="center">
                     <Box m={1}>
                       <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -95,7 +95,7 @@ const Hours: React.FC = (): ReactElement => {
                     </Box>
                   </Box>
                 </TableCell>
-                <TableCell align="right">
+                <TableCell align="center">
                   {index === 0 && (
                     <Button color="primary" variant="contained">
                       Apply to all
