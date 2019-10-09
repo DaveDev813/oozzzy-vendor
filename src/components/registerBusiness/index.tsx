@@ -1,17 +1,11 @@
 import React, { ReactElement } from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-// import CssBaseline from '@material-ui/core/CssBaseline';
-// import AppBar from '@material-ui/core/AppBar';
-// import Toolbar from '@material-ui/core/Toolbar';
 import Paper from '@material-ui/core/Paper';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-// import AddressForm from "./AddressForm";
-// import PaymentForm from "./PaymentForm";
-// import Review from "./Review";
 import Welcome from './Welcome';
 import Hours from './Hours';
 import Staff from './Staff';
@@ -32,13 +26,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   paper: {
+    position: 'absolute',
     maxWidth: '750px',
-    marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(3),
     padding: theme.spacing(2),
     [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
-      marginTop: theme.spacing(6),
-      marginBottom: theme.spacing(6),
       padding: theme.spacing(3),
     },
   },
