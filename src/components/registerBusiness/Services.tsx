@@ -8,6 +8,14 @@ import {
   TableRow,
   TableCell,
   Typography,
+  FormControl,
+  InputLabel,
+  Select,
+  Input,
+  Chip,
+  MenuItem,
+  Checkbox,
+  ListItemText,
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -19,10 +27,33 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'inline',
   },
   button: {
-    margin: theme.spacing(1),
     minWidth: '100px',
   },
+  formControl: {
+    minWidth: 120,
+    maxWidth: 300,
+  },
+  chips: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  chip: {
+    margin: 2,
+  },
 }));
+
+const names: string[] = [
+  'Oliver Hansen',
+  'Van Henry',
+  'April Tucker',
+  'Ralph Hubbard',
+  'Omar Alexander',
+  'Carlos Abbott',
+  'Miriam Wagner',
+  'Bradley Wilkerson',
+  'Virginia Andrews',
+  'Kelly Snyder',
+];
 
 interface TypeServices {
   serviceName: string;
@@ -38,6 +69,23 @@ const Services: React.FC = (): ReactElement => {
   const [serviceName, setServiceName] = React.useState<string>('');
   const [time, setTime] = React.useState<string>('');
   const [price, setPrice] = React.useState<any>(0);
+  /**
+   * multi select
+   */
+  const [personName, setPersonName] = React.useState<string[]>([]);
+  const handleChange = (event: React.ChangeEvent<{ value: unknown }>): void => {
+    setPersonName(event.target.value as string[]);
+  };
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
 
   const ServicesList: React.FC<TypeServices> = (
     props: TypeServices
@@ -48,6 +96,9 @@ const Services: React.FC = (): ReactElement => {
       </TableCell>
       <TableCell align="left">
         <Typography color="primary">{props.time}</Typography>
+      </TableCell>
+      <TableCell align="left">
+        <Typography color="primary">{props.price}</Typography>
       </TableCell>
       <TableCell align="left">
         <Typography color="primary">{props.price}</Typography>
@@ -123,6 +174,37 @@ const Services: React.FC = (): ReactElement => {
                 defaultValue={price}
                 onChange={(event: Event): void => setPrice(event.target.value)}
               />
+            </TableCell>
+            <TableCell align="left">
+              <FormControl className={classes.formControl}>
+                <InputLabel htmlFor="select-multiple-chip">Staff</InputLabel>
+                <Select
+                  variant="outlined"
+                  multiple={true}
+                  value={personName}
+                  onChange={handleChange}
+                  input={<Input id="select-multiple-chip" />}
+                  renderValue={(selected: any): any => (
+                    <div className={classes.chips}>
+                      {(selected as string[]).map((value: any): any => (
+                        <Chip
+                          key={value}
+                          label={value}
+                          className={classes.chip}
+                        />
+                      ))}
+                    </div>
+                  )}
+                  MenuProps={MenuProps}
+                >
+                  {names.map((name: any): any => (
+                    <MenuItem key={name} value={name}>
+                      <Checkbox checked={personName.indexOf(name) > -1} />
+                      <ListItemText primary={name} />
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </TableCell>
             <TableCell align="right">
               <Button
