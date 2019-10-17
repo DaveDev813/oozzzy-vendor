@@ -15,8 +15,10 @@ import Grid from '@material-ui/core/Grid';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 // import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems, secondaryListItems } from '../components/ListItems';
+import { mainListItems } from '../components/ListItems';
 import BookingCalendar from '../components/bookingCalendar';
+import { Modal } from '@material-ui/core';
+import TestStepper from '../components/registerBusiness';
 
 const drawerWidth = 240;
 
@@ -97,21 +99,32 @@ const useStyles = makeStyles((theme: Theme) => ({
   fixedHeight: {
     height: 240,
   },
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 }));
 
 const Dashboard: React.FC = (): ReactElement => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+  const [openModal, setOpenModal] = React.useState(true);
   const handleDrawerOpen = (): void => {
     setOpen(true);
   };
   const handleDrawerClose = (): void => {
     setOpen(false);
   };
-  // const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  const handleClose = (): void => {
+    setOpenModal(false);
+  };
 
   return (
     <div className={classes.root}>
+      <Modal open={openModal} onClose={handleClose} className={classes.modal}>
+        <TestStepper />
+      </Modal>
       <CssBaseline />
       <AppBar
         position="absolute"
@@ -164,7 +177,7 @@ const Dashboard: React.FC = (): ReactElement => {
         <Divider />
         <List>{mainListItems}</List>
         <Divider />
-        <List>{secondaryListItems}</List>
+        {/* <List>{secondaryListItems}</List> */}
       </Drawer>
 
       <main className={classes.content}>
