@@ -16,6 +16,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 // import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from '../components/ListItems';
+import BookingCalendar from '../components/bookingCalendar';
 
 const drawerWidth = 240;
 
@@ -171,6 +172,7 @@ const Dashboard: React.FC = (): ReactElement => {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container={true} spacing={3}>
             {/** content */}
+            <BookingCalendar />
           </Grid>
         </Container>
       </main>
