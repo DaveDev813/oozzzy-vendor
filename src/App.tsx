@@ -1,5 +1,4 @@
 import React, { ReactElement } from 'react';
-import './App.css';
 import { Switch, Route } from 'react-router';
 import Home from './screens/Home';
 import Dashboard from './screens/Dashboard';
