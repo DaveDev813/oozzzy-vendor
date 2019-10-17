@@ -12,11 +12,11 @@ import {
   InputLabel,
   Select,
   Input,
-  Chip,
   MenuItem,
   Checkbox,
   ListItemText,
 } from '@material-ui/core';
+import Face from '@material-ui/icons/Face';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -176,7 +176,7 @@ const Services: React.FC = (): ReactElement => {
               />
             </TableCell>
             <TableCell align="left">
-              <FormControl className={classes.formControl}>
+              <FormControl className={classes.formControl} variant="outlined">
                 <InputLabel htmlFor="select-multiple-chip">Staff</InputLabel>
                 <Select
                   variant="outlined"
@@ -184,17 +184,14 @@ const Services: React.FC = (): ReactElement => {
                   value={personName}
                   onChange={handleChange}
                   input={<Input id="select-multiple-chip" />}
-                  renderValue={(selected: any): any => (
-                    <div className={classes.chips}>
-                      {(selected as string[]).map((value: any): any => (
-                        <Chip
-                          key={value}
-                          label={value}
-                          className={classes.chip}
-                        />
-                      ))}
-                    </div>
-                  )}
+                  renderValue={(selected: any): any => {
+                    const staffCount = selected as string[];
+                    return (
+                      <React.Fragment>
+                        <Face fontSize="large" /> {staffCount.length}
+                      </React.Fragment>
+                    );
+                  }}
                   MenuProps={MenuProps}
                 >
                   {names.map((name: any): any => (
